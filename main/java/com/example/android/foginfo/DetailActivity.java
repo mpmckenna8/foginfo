@@ -51,10 +51,22 @@ public class DetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+
         Log.v("createing in DA", LocationEntry.COLUMN_CITY_NAME);
         if (savedInstanceState == null) {
+            String date = getIntent().getStringExtra(DATE_KEY);
+
+            Log.v("the date in on create", date);
+
+            Bundle arguments = new Bundle();
+            arguments.putString(DetailActivity.DATE_KEY, date);
+
+            DetailFragment fragment= new DetailFragment();
+            fragment.setArguments(arguments);
+
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new DetailFragment())
+                    .add(R.id.weather_detail_container, fragment)
                     .commit();
         }
     }
