@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.android.foginfo.data.WeatherContract;
+
 /**
  * {@link ForecastAdapter} exposes a list of weather forecasts
  * from a {@link Cursor} to a {@link android.widget.ListView}.
@@ -89,6 +92,11 @@ public class ForecastAdapter extends CursorAdapter {
                 break;
             }
         }
+
+        String locSet = cursor.getString(ForecastFragment.COL_CITY_Name);
+//cursor.getString(ForecastFragment.COLUMN_CITY_NAME);
+        Log.v("location setting", locSet);
+
 
         // Read date from cursor
         String dateString = cursor.getString(ForecastFragment.COL_WEATHER_DATE);
