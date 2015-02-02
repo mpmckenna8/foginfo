@@ -35,6 +35,8 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
     private static final String LOCATION_KEY = "location";
 
+    public static float windangle = 90;
+
     private ShareActionProvider mShareActionProvider;
     private String mLocation;
     private String mForecast;
@@ -101,6 +103,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         mHumidityView = (TextView) rootView.findViewById(R.id.detail_humidity_textview);
         mWindView = (TextView) rootView.findViewById(R.id.detail_wind_textview);
         mPressureView = (TextView) rootView.findViewById(R.id.detail_pressure_textview);
+
         return rootView;
     }
 
@@ -215,8 +218,19 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
             // Read wind speed and direction from cursor and update view
             float windSpeedStr = data.getFloat(data.getColumnIndex(WeatherEntry.COLUMN_WIND_SPEED));
-            float windDirStr = data.getFloat(data.getColumnIndex(WeatherEntry.COLUMN_DEGREES));
+            final float windDirStr = data.getFloat(data.getColumnIndex(WeatherEntry.COLUMN_DEGREES));
+
+
+
+
+
+
             mWindView.setText(Utility.getFormattedWind(getActivity(), windSpeedStr, windDirStr));
+
+
+                windangle = windDirStr;
+
+            Log.v("dunnowh", Float.toString(windangle));
 
             Log.v("wind from detailFragment", Utility.getFormattedWind(getActivity(), windSpeedStr, windDirStr) );
 

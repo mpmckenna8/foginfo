@@ -186,6 +186,7 @@ public class ForecastFragment extends Fragment implements LoaderCallbacks<Cursor
             outState.putInt(SELECTED_KEY, mPosition);
         }
         super.onSaveInstanceState(outState);
+
     }
 
     @Override
