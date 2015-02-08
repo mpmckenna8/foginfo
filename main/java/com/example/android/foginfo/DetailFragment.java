@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -155,6 +156,8 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             getLoaderManager().initLoader(DETAIL_LOADER, null, this);
         }
     }
+
+
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {

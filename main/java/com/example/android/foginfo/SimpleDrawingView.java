@@ -15,6 +15,8 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityManager;
 
 import com.example.android.foginfo.data.WeatherContract;
 import com.example.android.foginfo.data.WeatherDbHelper;
@@ -29,7 +31,9 @@ public class SimpleDrawingView extends View {
     // defines paint and canvas
     private Paint drawPaint;
 
-    public float ViDegrees;
+    public float ViDegrees = 40;
+
+    Context mContext;
 
 
     public SimpleDrawingView(Context context, AttributeSet attrs) {
@@ -39,6 +43,13 @@ public class SimpleDrawingView extends View {
 
         int lenewea = WeatherDbHelper.DATABASE_NAME.length();
 
+        mContext = context;
+
+        if(mContext.getSystemService(Context.ACCESSIBILITY_SERVICE) != null )
+        {
+            sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED);
+        }
+
 
 
 
@@ -47,6 +58,14 @@ public class SimpleDrawingView extends View {
         setupPaint();
     }
 
+/**
+    @Override
+    public boolean DispatchPopulateAccessibilityEvent (AccessibilityEvent ev){
+        ev.getText().add("North");
+        return true;
+    }
+
+**/
 
 
 
@@ -77,6 +96,10 @@ public class SimpleDrawingView extends View {
 
 
         drawPaint.setColor(Color.GREEN);
+
+        String blaper = mContext.getString(R.string.pref_location_default);
+
+        Log.v("blah", blaper);
 
 
 

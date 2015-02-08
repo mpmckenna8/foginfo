@@ -66,6 +66,8 @@ public class Utility {
         String todayStr = WeatherContract.getDbDateString(todayDate);
         Date inputDate = WeatherContract.getDateFromDb(dateStr);
 
+
+
         // If the date we're building the String for is today's date, the format
         // is "Today, June 24"
         if (todayStr.equals(dateStr)) {

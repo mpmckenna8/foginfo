@@ -61,6 +61,7 @@ public class WeatherContract {
     public static Date getDateFromDb(String dateText) {
         SimpleDateFormat dbDateFormat = new SimpleDateFormat(DATE_FORMAT);
         try {
+
             return dbDateFormat.parse(dateText);
         } catch ( ParseException e ) {
             e.printStackTrace();
