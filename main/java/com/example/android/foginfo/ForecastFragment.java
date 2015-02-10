@@ -28,6 +28,7 @@ import android.widget.TextView;
 
 import com.example.android.foginfo.data.WeatherContract;
 import com.example.android.foginfo.service.SunshineService;
+import com.example.android.foginfo.sync.SunshineSyncAdapter;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -172,16 +173,8 @@ public class ForecastFragment extends Fragment implements LoaderCallbacks<Cursor
 
     private void updateWeather() {
 
-        Intent alarmIntent = new Intent(getActivity(), SunshineService.AlarmReceiver.class);
-        alarmIntent.putExtra(SunshineService.LOCATION_QUERY_EXTRA, Utility.getPreferredLocation(getActivity()));
+        SunshineSyncAdapter.syncImmediately(getActivity());
 
-        //Wrap in a pending intent which only fires once.
-        PendingIntent pi = PendingIntent.getBroadcast(getActivity(), 0,alarmIntent,PendingIntent.FLAG_ONE_SHOT);//getBroadcast(context, 0, i, 0);
-
-        AlarmManager am=(AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
-
-        //Set the AlarmManager to wake up the system.
-        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 6009, pi);
     }
 
 
